@@ -4,7 +4,7 @@ import helpers.LevelHandler;
 import helpers.Print;
 
 public class NoteAndWindow implements LevelHandler {
-    private final String LEVEL_TEXT = "";
+    private final String LEVEL_TEXT = "test";
     private final String LEVEL_CHOICES = "";
 
     @Override
