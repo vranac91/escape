@@ -1,11 +1,12 @@
 package ui;
 
-import helpers.Print;
+import helpers.HelperMethods;
+import helpers.LevelHandler;
 import ui.levels.Door;
 
 import java.util.Scanner;
 
-public class WelcomeScreen {
+public class WelcomeScreen implements LevelHandler {
     private final String WELCOME_HEADER = "Welcome to Mystery Escape v1.0!\n\n" +
             "In this textual adventure, you have to find your way out of a locked room.\n" +
             "You will do this by deciding which actions you're going to do.\n" +
@@ -15,28 +16,34 @@ public class WelcomeScreen {
             "Good luck!\n";
     private final String WELCOME_START = "Press [1] to start the game: ";
 
-    public void start() {
-        printWelcomeText();
+    @Override
+    public void printLevelText() {
+        System.out.println(WELCOME_HEADER);
+    }
+
+    @Override
+    public void printLevelChoices() {
+        System.out.println(WELCOME_START);
+    }
+
+    @Override
+    public void handleChoices() {
         while (true) {
-            Scanner scan = new Scanner(System.in);
-            while (!scan.hasNextInt()) {
-                scan.next();
-                System.out.print(WELCOME_START);
-            }
-            int input = scan.nextInt();
+            int input = HelperMethods.validateIntInput();
             if (input == 1) {
                 Door door = new Door();
                 door.start();
                 break;
             } else {
-                System.out.print(WELCOME_START);
+                System.out.print(LevelHandler.falseInputMessage);
             }
         }
     }
 
-    private void printWelcomeText() {
-        Print.printDivider();
-        System.out.println(WELCOME_HEADER);
-        System.out.println(WELCOME_START);
+    public void start() {
+        HelperMethods.printDivider();
+        printLevelText();
+        printLevelChoices();
+        handleChoices();
     }
 }

@@ -5,10 +5,13 @@ import helpers.HelperMethods;
 
 import java.util.Scanner;
 
-public class Window implements LevelHandler {
-    private final String LEVEL_TEXT = "You come to the window, only realizing that you're too high to jump without dying.\n\n" +
-            "Luckily, you see a man walking his dog.\nMaybe he can set you free, or at least call a police.\n";
-    private final String LEVEL_CHOICES = "[1] Wave and call for help\n";
+public class Peek implements LevelHandler {
+    public final String LEVEL_TEXT = "You duck and stay down, your heart pumping so fast that you can't hear anything. You feel like you're gonna faint.\n" +
+            "You decide to peek and look for the scary man and his companion.\n" +
+            "You slowly go for the window...only to realize that they are gone.\n\n" +
+            "They could have gone somewhere else...or they are about to enter the house and look for you.\n\n" +
+            "You can't take it anymore. You need to find a way to contact the outer world.\n";
+    public final String LEVEL_CHOICES = "[1] Look for the telephone\n";
 
     @Override
     public void printLevelText() {
@@ -30,8 +33,8 @@ public class Window implements LevelHandler {
             }
             int input = scan.nextInt();
             if (input == 1) {
-                ManAndDog manAndDog = new ManAndDog();
-                manAndDog.start();
+                Phone phone = new Phone();
+                phone.start();
                 break;
             } else {
                 System.out.print(falseInputMessage);
