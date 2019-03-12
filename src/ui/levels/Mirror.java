@@ -10,7 +10,7 @@ public class Mirror implements LevelHandler {
             "Half of your face is covered in blood; you are almost unable to recognize yourself.\n\n" +
             "Next to your reflection, you notice a writing in red:\n\n" +
             "RUN\n\n" +
-            "A wave of panic and fear overflows you. You are unsure if this is simply someone messing with you, or your life is really in danger.\n\n" +
+            "A wave of panic and fear overflows you. You're unsure if this is simply someone messing with you, or your life is really in danger.\n\n" +
             "You need to find a way out - fast.\n\n";
     private final String LEVEL_CHOICES = "[1] Go to the window\n";
 
