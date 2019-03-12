@@ -1,35 +1,28 @@
 package ui.levels;
 
-import helpers.LevelHandler;
 import helpers.HelperMethods;
-
-import java.util.Scanner;
+import helpers.LevelHandler;
 
 public class Jacket implements LevelHandler {
-    private final String LEVEL_TEXT = "You need to find the jacket. It has to be somewhere in the room - otherwise you're screwed.\n\n" +
-            "You try to turn on the light, but the light switch does nothing. Fortunately, there is a small flashlight under the mirror, on the cupboard.\n" +
-            "You take the flashlight and begin exploring the room.\n";
+    private final String LEVEL_TEXT = "You need to find the jacket. It has to be somewhere in the room - otherwise you're screwed.\n" +
+            "That cell phone is currently your only way of communicating with the outer world.\n\n" +
+            "It's good that you've find that flashlight, otherwise it would be really hard to look for anything in here.\n\n";
     private final String LEVEL_CHOICES = "[1] Look for the jacket on the sofa\n[2] Look for the jacket on the floor\n[3] Look for the jacket on the coat hanger\n";
 
     @Override
     public void printLevelText() {
-        System.out.println(LEVEL_TEXT);
+        HelperMethods.printTextByChar(LEVEL_TEXT,30);
     }
 
     @Override
     public void printLevelChoices() {
-        System.out.println(LEVEL_CHOICES);
+        HelperMethods.printTextByChar(LEVEL_CHOICES,30);
     }
 
     @Override
     public void handleChoices() {
         while (true) {
-            Scanner scan = new Scanner(System.in);
-            while (!scan.hasNextInt()) {
-                scan.next();
-                System.out.println(falseInputMessage);
-            }
-            int input = scan.nextInt();
+            int input = HelperMethods.validateIntInput();
             if (input == 1) {
                 JacketSofa sofa = new JacketSofa();
                 sofa.start();

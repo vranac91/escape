@@ -10,14 +10,14 @@ public class End implements LevelHandler {
             "You quickly rush to the door, insert the key, twist it and...\n\n" +
             "...you hear a silent *click*, and the door is opened!\n" +
             "Overwhelmed with joy, you storm out of the room in a dark corridor.\n" +
-            "You tap on the walls trying to find the light switch.\n\n" +
+            "You tap on the walls trying to find the light switch. There is none. You turn on the flashlight and point it at the corridor. All the walls are painted red.\n\n" +
             "Suddenly, a loud, otherworldly shriek shook the house.\n\n" +
             "To be continued...\n\n" +
-            "Thank you for playing!";
+            "Thank you for playing!\n";
 
     @Override
     public void printLevelText() {
-        System.out.println(LEVEL_TEXT);
+        HelperMethods.printTextByChar(LEVEL_TEXT,30);
     }
 
     @Override

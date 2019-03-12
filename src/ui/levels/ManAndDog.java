@@ -1,9 +1,7 @@
 package ui.levels;
 
-import helpers.LevelHandler;
 import helpers.HelperMethods;
-
-import java.util.Scanner;
+import helpers.LevelHandler;
 
 public class ManAndDog implements LevelHandler {
     private final String LEVEL_TEXT = "You wave to the man, crying for help, hoping that he will respond.\n" +
@@ -11,28 +9,23 @@ public class ManAndDog implements LevelHandler {
             "As they turn, you realize that both the dog and the man have glowing, devilish red eyes.\n\n" +
             "\"WHAT?!\"\n\n" +
             "You are paralyzed with fear. They both look at you and stand perfectly still. Suddenly, a man lets out a horrific, otherworldly shriek.\n\n" +
-            "This doesn't look good. There must be a way to call for help. You need to act quickly.\n";
+            "This doesn't look good. There must be a way to call for help. You need to act quickly.\n\n";
     private final String LEVEL_CHOICES = "[1] Duck and wait for a bit, then peek and check for the man and dog\n[2] Duck, crawl and look for the telephone\n";
 
     @Override
     public void printLevelText() {
-        System.out.println(LEVEL_TEXT);
+        HelperMethods.printTextByChar(LEVEL_TEXT, 30);
     }
 
     @Override
     public void printLevelChoices() {
-        System.out.println(LEVEL_CHOICES);
+        HelperMethods.printTextByChar(LEVEL_CHOICES,20);
     }
 
     @Override
     public void handleChoices() {
         while (true) {
-            Scanner scan = new Scanner(System.in);
-            while (!scan.hasNextInt()) {
-                scan.next();
-                System.out.println(falseInputMessage);
-            }
-            int input = scan.nextInt();
+            int input = HelperMethods.validateIntInput();
             if (input == 1) {
                 Peek peek = new Peek();
                 peek.start();

@@ -1,9 +1,7 @@
 package ui.levels;
 
-import helpers.LevelHandler;
 import helpers.HelperMethods;
-
-import java.util.Scanner;
+import helpers.LevelHandler;
 
 public class Door implements LevelHandler {
     private final String DOOR_TEXT = "...\n..\n...\n\"Ow...\"\n.......\n\"Ow...my head...\"\n\n\"...My...what...wh...where am I?\"\n...\n\n" +
@@ -15,28 +13,23 @@ public class Door implements LevelHandler {
             "Right in front of you, you see a door. You start to walk towards it and step into a puddle.\n" +
             "You look down, and realize that it's blood.\n\n" +
             "\"Oh God! What?! What's happening?!\"\n\n" +
-            "Shocked and scared, you decide that it's time to leave this room and find out what happened to you.\n";
+            "Shocked and scared, you decide that it's time to leave this room and find out what happened to you.\n\n";
     private final String DOOR_CHOICES = "[1] Walk towards the door and try to open it\n";
 
     @Override
     public void printLevelText() {
-        System.out.println(DOOR_TEXT);
+        HelperMethods.printTextByChar(DOOR_TEXT, 30);
     }
 
     @Override
     public void printLevelChoices() {
-        System.out.println(DOOR_CHOICES);
+        HelperMethods.printTextByChar(DOOR_CHOICES, 30);
     }
 
     @Override
     public void handleChoices() {
         while (true) {
-            Scanner scan = new Scanner(System.in);
-            while (!scan.hasNextInt()) {
-                scan.next();
-                System.out.println(falseInputMessage);
-            }
-            int input = scan.nextInt();
+            int input = HelperMethods.validateIntInput();
             if (input == 1) {
                 NoteAndWindow noteAndWindow = new NoteAndWindow();
                 noteAndWindow.start();

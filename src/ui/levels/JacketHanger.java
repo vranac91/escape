@@ -3,13 +3,11 @@ package ui.levels;
 import helpers.HelperMethods;
 import helpers.LevelHandler;
 
-import java.util.Scanner;
-
 public class JacketHanger implements LevelHandler {
     private final String LEVEL_TEXT = "Your jacket is not on the hanger, but someone else's is.\n" +
             "You decide to search through the jacket and find a small, circular key.\n\n" +
             "You quickly run to the door hoping to open them, only to realize that the key is not right.\n\n" +
-            "You put the key in your pocket.\n";
+            "You put the key in your pocket.\n\n";
 
     private final String LEVEL_CHOICE_ALL_SOLVED = "[1] Try to open the small box\n";
     private final String LEVEL_CHOICE_SOFA_SOLVED = "[1] Look for the jacket on the floor\n";
@@ -21,22 +19,22 @@ public class JacketHanger implements LevelHandler {
 
     @Override
     public void printLevelText() {
-        System.out.println(LEVEL_TEXT);
+        HelperMethods.printTextByChar(LEVEL_TEXT,30);
     }
 
     @Override
     public void printLevelChoices() {
         if (JacketFloor.itemObtained && JacketSofa.itemObtained) {
-            System.out.println(LEVEL_CHOICE_ALL_SOLVED);
+            HelperMethods.printTextByChar(LEVEL_CHOICE_ALL_SOLVED, 20);
             foundItems = 3;
         } else if (JacketFloor.itemObtained) {
-            System.out.println(LEVEL_CHOICE_FLOOR_SOLVED);
+            HelperMethods.printTextByChar(LEVEL_CHOICE_FLOOR_SOLVED, 20);
             foundItems = 2;
         } else if (JacketSofa.itemObtained) {
-            System.out.println(LEVEL_CHOICE_SOFA_SOLVED);
+            HelperMethods.printTextByChar(LEVEL_CHOICE_SOFA_SOLVED,20);
             foundItems = 1;
         } else {
-            System.out.println(LEVEL_CHOICE_NONE_SOLVED);
+            HelperMethods.printTextByChar(LEVEL_CHOICE_NONE_SOLVED, 20);
         }
     }
 
@@ -45,12 +43,7 @@ public class JacketHanger implements LevelHandler {
         switch (foundItems) {
             case 0: // none solved, 2 choices: sofa and floor
                 while (true) {
-                    Scanner scan = new Scanner(System.in);
-                    while (!scan.hasNextInt()) {
-                        scan.next();
-                        System.out.println(falseInputMessage);
-                    }
-                    int input = scan.nextInt();
+                    int input = HelperMethods.validateIntInput();
                     if (input == 1) {
                         JacketSofa sofa = new JacketSofa();
                         sofa.start();
@@ -66,12 +59,7 @@ public class JacketHanger implements LevelHandler {
 
             case 1: // sofa solved, 1 choice: floor
                 while (true) {
-                    Scanner scan = new Scanner(System.in);
-                    while (!scan.hasNextInt()) {
-                        scan.next();
-                        System.out.println(falseInputMessage);
-                    }
-                    int input = scan.nextInt();
+                    int input = HelperMethods.validateIntInput();
                     if (input == 1) {
                         JacketFloor floor = new JacketFloor();
                         floor.start();
@@ -83,12 +71,7 @@ public class JacketHanger implements LevelHandler {
 
             case 2: // floor solved, 1 choice: sofa
                 while (true) {
-                    Scanner scan = new Scanner(System.in);
-                    while (!scan.hasNextInt()) {
-                        scan.next();
-                        System.out.println(falseInputMessage);
-                    }
-                    int input = scan.nextInt();
+                    int input = HelperMethods.validateIntInput();
                     if (input == 1) {
                         JacketSofa sofa = new JacketSofa();
                         sofa.start();
@@ -100,12 +83,7 @@ public class JacketHanger implements LevelHandler {
 
             default: // all solved
                 while (true) {
-                    Scanner scan = new Scanner(System.in);
-                    while (!scan.hasNextInt()) {
-                        scan.next();
-                        System.out.println(falseInputMessage);
-                    }
-                    int input = scan.nextInt();
+                    int input = HelperMethods.validateIntInput();
                     if (input == 1) {
                         End end = new End();
                         end.start();

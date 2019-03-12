@@ -3,34 +3,29 @@ package ui.levels;
 import helpers.LevelHandler;
 import helpers.HelperMethods;
 
-import java.util.Scanner;
-
 public class NoteAndWindow implements LevelHandler {
-    private final String LEVEL_TEXT = "You reach the for the knob and try to open the door, only to realize that they are locked.\n" +
+    private final String LEVEL_TEXT = "You reach the for the knob and try to open the door, only to realize that it's locked.\n" +
             "\n\"Great. Now what?\"\n" +
-            "\nYou look down and see a piece of paper lying on the floor. Could this make some clarification?\n" +
-            "\nYou look to the left and see the outside light protruding through the half-opened window. Maybe you could simply jump out?\n";
+            "\nThere is a light switch next to the door. You press it, but nothing happens - seems like the light bulb is toast.\n" +
+            "Fortunately, there is a small flashlight placed on top of a small table next to the door. You take it, turn it on and start to look around the room.\n" +
+            "\nYou look down and see a piece of paper lying on the floor. Seems like some kind of a note. Could this make some clarification?\n" +
+            "\nYou look to the left and see the outside light protruding through the half-opened window. Maybe you could simply jump out?\n\n";
     private final String LEVEL_CHOICES = "[1] Take the piece of paper from the floor\n[2] Go to the window\n";
 
     @Override
     public void printLevelText() {
-        System.out.println(LEVEL_TEXT);
+        HelperMethods.printTextByChar(LEVEL_TEXT,30);
     }
 
     @Override
     public void printLevelChoices() {
-        System.out.println(LEVEL_CHOICES);
+        HelperMethods.printTextByChar(LEVEL_CHOICES,30);
     }
 
     @Override
     public void handleChoices() {
         while (true) {
-            Scanner scan = new Scanner(System.in);
-            while (!scan.hasNextInt()) {
-                scan.next();
-                System.out.println(falseInputMessage);
-            }
-            int input = scan.nextInt();
+            int input = HelperMethods.validateIntInput();
             if (input == 1) {
                 NoteReading reading = new NoteReading();
                 reading.start();

@@ -1,34 +1,28 @@
 package ui.levels;
 
-import helpers.LevelHandler;
 import helpers.HelperMethods;
-
-import java.util.Scanner;
+import helpers.LevelHandler;
 
 public class Window implements LevelHandler {
     private final String LEVEL_TEXT = "You come to the window, only realizing that you're too high to jump without dying.\n\n" +
-            "Luckily, you see a man walking his dog.\nMaybe he can set you free, or at least call a police.\n";
+            "Luckily, you see a man walking his dog.\nMaybe he can set you free, or at least call a police.\n\n" +
+            "";
     private final String LEVEL_CHOICES = "[1] Wave and call for help\n";
 
     @Override
     public void printLevelText() {
-        System.out.println(LEVEL_TEXT);
+        HelperMethods.printTextByChar(LEVEL_TEXT,30);
     }
 
     @Override
     public void printLevelChoices() {
-        System.out.println(LEVEL_CHOICES);
+        HelperMethods.printTextByChar(LEVEL_CHOICES,20);
     }
 
     @Override
     public void handleChoices() {
         while (true) {
-            Scanner scan = new Scanner(System.in);
-            while (!scan.hasNextInt()) {
-                scan.next();
-                System.out.println(falseInputMessage);
-            }
-            int input = scan.nextInt();
+            int input = HelperMethods.validateIntInput();
             if (input == 1) {
                 ManAndDog manAndDog = new ManAndDog();
                 manAndDog.start();
